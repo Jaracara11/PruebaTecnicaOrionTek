@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <h2 *ngIf="isNewClient">Add New Client</h2>
+  <h2 *ngIf="!isNewClient">Client Details</h2>
+
+  <form *ngIf="isEditMode" (ngSubmit)="onSubmit()">
+    <div class="form-group mt-2">
+      <label for="name">Name</label>
+      <input type="text" id="name" class="form-control" [(ngModel)]="client.name" name="name" required />
+    </div>
+    <div class="form-group mt-2">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" [(ngModel)]="client.email" name="email" required />
+    </div>
+    <div class="form-group mt-2">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" class="form-control" [(ngModel)]="client.phone" name="phone" required />
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary mt-2">{{ isNewClient ? 'Add Client' : 'Save Changes' }}</button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="toggleEditMode()"
+        *ngIf="!isNewClient">Cancel</button>
+    </div>
+  </form>
+
+  <div *ngIf="!isEditMode && !isNewClient">
+    <p><strong>Name:</strong> {{ client.name }}</p>
+    <p><strong>Email:</strong> {{ client.email }}</p>
+    <p><strong>Phone:</strong> {{ client.phone }}</p>
+    <button class="btn btn-primary" (click)="toggleEditMode()">Edit Client</button>
+  </div>
+
+  <h3 *ngIf="!isNewClient">Addresses</h3>
+  <table *ngIf="!isNewClient" class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>House Number</th>
+        <th>Street</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let address of addresses">
+        <td *ngIf="address?.id">{{ address.id }}</td>
+        <td>{{ address?.houseNumber }}</td>
+        <td>{{ address?.street }}</td>
+        <td>{{ address?.city }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 *ngIf="!isNewClient">Add New Address</h4>
+  <form *ngIf="!isNewClient && isEditMode" (ngSubmit)="addAddress()">
+    <div class="form-group mt-2">
+      <label for="houseNumber">House Number</label>
+      <input type="text" id="houseNumber" class="form-control" [(ngModel)]="newAddress.houseNumber" name="houseNumber"
+        required />
+    </div>
+    <div class="form-group mt-2">
+      <label for="street">Street</label>
+      <input type="text" id="street" class="form-control" [(ngModel)]="newAddress.street" name="street" required />
+    </div>
+    <div class="form-group mt-2">
+      <label for="city">City</label>
+      <input type="text" id="city" class="form-control" [(ngModel)]="newAddress.city" name="city" required />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Add Address</button>
+  </form>
+</div>

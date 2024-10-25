@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2>Clients List</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td><button *ngIf="client.id" class="btn btn-primary" (click)="onEdit(client.id)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

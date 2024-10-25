@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\PruebaTecnicaOrionTek.Server.props" />
+</Project>

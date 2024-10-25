@@ -1,0 +1,8 @@
+*.vsidx
+*.bin
+*.dll
+*.pbd
+.vs/
+obj/
+bin/
+debug/
